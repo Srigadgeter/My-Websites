@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $("#div3").click(function(){
+        var d = $("#div1");
+        var dd = $("#div2");
+        var ddd = $("#div3");
+        d.animate({height : '300px'},1000,"swing")
+        .queue(function(){
+            d.css("background-color","#77def4");
+            d.dequeue();
+        })
+        .animate({width : '500px'},1000,"swing");
+
+        dd.animate({height : '300px'},1000,"swing")
+        .queue(function(){
+            dd.css("background-color","#57b6cb");
+            dd.dequeue();
+        })
+        .animate({width : '400px'},2000,"swing");
+
+        ddd.animate({height : '300px'},1000,"swing")
+        .queue(function(){
+            ddd.css("background-color","#1c869d");
+            ddd.dequeue();
+        })
+        .animate({width : '300px'},3000,"swing");
+    });
+
+    $("#num1").focus(function(){
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        location.reload();
+    });
+});
+
+function prime(){
+    var a = parseInt(document.getElementById("num1").value),
+    b = parseInt(document.getElementById("num2").value),
+    sum = "",i,j,i1=5,flag,count = 0;
+                                                        
+    for(i=a;i<=b;i++){ 
+        
+        flag = 0;
+        if(i > 1){
+            for(j=2;j<=parseInt(i/2);j++){
+                if(i%j == 0){
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag == 0){
+                sum +=  i + "<br>";
+                count++;
+            }
+        }
+    }
+    document.getElementById("textPrime").innerHTML = count+" prime numbers from "+a+" to "+b+" are<br>"+sum;
+}
+
+</script> 
+
+<style>
+    .div{
+        float: left;
+        padding: 10px;
+    }
+    .div1{
+        float: right;
+        padding: 10px;
+    }
+</style>
+</head>
+
+<body>
+    <center><h1>Welcome to Srigadgeter Page</h1></center>
+<div>
+<div class="div" style = "background:#57b6cb; height:100%; width:400px " >
+do you want to print the prime number <br><br>from:
+<input type="text" placeholder="number1" id="num1" autofocus><br><br>to:
+<input type="text" placeholder="number2" id="num2"><br><br>
+<button value="get prime num" onclick="prime()">Get values</button>
+<br><br>
+<p id="textPrime"></p>
+</div>
+<div class="div1" style="height:100%; width:50%">
+<div id="div1" style="background:#98bf21; height:100%; width:100px">
+    <div id="div2" style="background:#98bf21; height:100px; width:100px">
+        <div id="div3" style="background:#98bf21; height:100px; width:100px"></div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html> 
